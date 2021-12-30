@@ -56,7 +56,12 @@ class HomeController extends Controller
         $data=product::where('title', 'Like', '%'.$search.'%')->get();
         return view('user.home', compact('data'));
     }
-
+    public function allproduct()
+    {
+        $data=product::all();
+        
+        return view('user.allproduct', compact('data'));
+    }
     public function addcart(Request $request, $id)
     {
         if(Auth::id())

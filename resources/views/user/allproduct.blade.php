@@ -9,7 +9,7 @@
     <meta name="author" content="">
     <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap" rel="stylesheet">
 
-    <title>TokoPashion Clothing Website - Contact Page</title>
+    <title>TokoPashion Clothing Website - Products</title>
 
     <!-- Bootstrap core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -55,13 +55,13 @@ https://templatemo.com/tm-546-sixteen-clothing
                   <span class="sr-only">(current)</span>
                 </a>
               </li> 
-              <li class="nav-item">
+              <li class="nav-item active">
                 <a class="nav-link" href="products.html">Our Products</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="about.html">About Us</a>
               </li>
-              <li class="nav-item active">
+              <li class="nav-item">
                 <a class="nav-link" href="contact.html">Contact Us</a>
               </li>
             </ul>
@@ -71,48 +71,13 @@ https://templatemo.com/tm-546-sixteen-clothing
     </header>
 
     <!-- Page Content -->
-    <div class="page-heading contact-heading header-text">
+    <div class="page-heading products-heading header-text">
       <div class="container">
         <div class="row">
           <div class="col-md-12">
             <div class="text-content">
-              <h4>contact us</h4>
-              <h2>let’s get in touch</h2>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-
-    <div class="find-us">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12">
-            <div class="section-heading">
-              <h2>Our Location on Maps</h2>
-            </div>
-          </div>
-          <div class="col-md-8">
-<!-- How to change your own map point
-	1. Go to Google Maps
-	2. Click on your location point
-	3. Click "Share" and choose "Embed map" tab
-	4. Copy only URL and paste it within the src="" field below
--->
-            <div id="map">
-              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d63201.058098045534!2d112.13023604611837!3d-8.094738880227503!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e78eb1801b03d3d%3A0x3027a76e352bcf0!2sBlitar%2C%20Kota%20Blitar%2C%20Jawa%20Timur!5e0!3m2!1sid!2sid!4v1639445952835!5m2!1sid!2sid" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="left-content">
-              <h4>About our office</h4>
-              <p>Toko ini berlokasi di area Wisata Makam Bung Karno Blitar.</p>
-              <ul class="social-icons">
-                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                <li><a href="#"><i class="fa fa-instagram"></i></a></li>
-              </ul>
+              <h4>new arrivals</h4>
+              <h2>toko pashion products</h2>
             </div>
           </div>
         </div>
@@ -120,58 +85,73 @@ https://templatemo.com/tm-546-sixteen-clothing
     </div>
 
     
-    <div class="send-message">
+    <div class="products">
       <div class="container">
         <div class="row">
           <div class="col-md-12">
-            <div class="section-heading">
-              <h2>Send us a Message</h2>
-            </div>
-          </div>
-          <div class="col-md-8">
-            <div class="contact-form">
-              <form id="contact" action="" method="post">
-                <div class="row">
-                  <div class="col-lg-12 col-md-12 col-sm-12">
-                    <fieldset>
-                      <input name="name" type="text" class="form-control" id="name" placeholder="Full Name" required="">
-                    </fieldset>
-                  </div>
-                  <div class="col-lg-12 col-md-12 col-sm-12">
-                    <fieldset>
-                      <input name="email" type="text" class="form-control" id="email" placeholder="E-Mail Address" required="">
-                    </fieldset>
-                  </div>
-                  <div class="col-lg-12 col-md-12 col-sm-12">
-                    <fieldset>
-                      <input name="subject" type="text" class="form-control" id="subject" placeholder="Subject" required="">
-                    </fieldset>
-                  </div>
-                  <div class="col-lg-12">
-                    <fieldset>
-                      <textarea name="message" rows="6" class="form-control" id="message" placeholder="Your Message" required=""></textarea>
-                    </fieldset>
-                  </div>
-                  <div class="col-lg-12">
-                    <fieldset>
-                      <button type="submit" id="form-submit" class="filled-button">Send Message</button>
-                    </fieldset>
-                  </div>
-                </div>
+            <div class="filters">
+              <ul>
+                  <li class="active" data-filter="*">All Products</li>
+                  
+              </ul>
+              <form action="{{url('search')}}" method="get" class="form-inline" style="float: right; padding: 10px;">
+
+                @csrf
+
+                <input class="form-control" type="search" name="search" placeholder="search">
+
+                <input type="submit" value="Search" class="btn btn-success">
               </form>
             </div>
           </div>
+          @foreach($data as $product)
+          
+          <div class="col-md-4">
+            <div class="product-item">
+              <a href="#"><img height="250" width="200" src="/productimage/{{$product->image}}" alt=""></a>
+              <div class="down-content">
+                <a href="#"><h4>{{$product->title}}</h4></a>
+                <h6>Rp. {{$product->price}}</h6>
+                <p>{{$product->description}}</p>
+
+                <form action="{{url('addcart', $product->id)}}" method="POST">
+
+                  @csrf
+
+                  <input type="number" value="1" min="1" class="form-control" style="width:100px" name="quantity">
+
+                  <br>
+
+                  <input class="btn btn-primary" type="submit" value="Add Cart">
+                </form>
+                
+              </div>
+            </div>
           </div>
-          </div>
+
+
+        @endforeach
+
+        @if(method_exists($data,'links'))
+
+        <div class="d-flex justify-content-center">
+          {!! $data->links() !!}
+        </div>
+
+        @endif
+          
+          
         </div>
       </div>
     </div>
+
+    
     <footer>
       <div class="container">
         <div class="row">
           <div class="col-md-12">
             <div class="inner-content">
-              <p>Copyright &copy; 2021 TOKOPHASION Co., Ltd.
+              <p>Copyright &copy; 2021 TOKO PASHION Co., Ltd.</p>
             </div>
           </div>
         </div>

@@ -58,7 +58,7 @@ https://templatemo.com/tm-546-sixteen-clothing
                 </a>
               </li> 
               <li class="nav-item">
-                <a class="nav-link" href="products.html">Our Products</a>
+                <a class="nav-link" href="{{url('allproduct')}}">Our Products</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="about.html">About Us</a>
@@ -144,7 +144,7 @@ https://templatemo.com/tm-546-sixteen-clothing
         <div class="row">
           <div class="col-md-12">
             <div class="section-heading">
-              <h2>About TokoPashion Clothing</h2>
+              <h2>About TokoPashion</h2>
             </div>
           </div>
           <div class="col-md-6">
@@ -192,7 +192,7 @@ https://templatemo.com/tm-546-sixteen-clothing
         <div class="row">
           <div class="col-md-12">
             <div class="inner-content">
-              <p>Copyright &copy; 2021 TokoPashion Clothing Co., Ltd.
+              <p>Copyright &copy; 2021 TokoPashion Co., Ltd.
             </p>
             </div>
           </div>
